@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebShop.Models.Provider>
+
+@{
+    ViewData["Title"] = "Index";
+    var i = 0;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>@Html.DisplayNameFor(model => model.ProviderID)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProviderName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @(++i)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProviderID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProviderID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProviderID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

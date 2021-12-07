@@ -1,0 +1,55 @@
+﻿@model WebShop.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+<div class="pb-5">
+    <hr />
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <img id="image" src="~/images/@Html.DisplayFor(model => model.Image)" alt="@Html.DisplayFor(model => model.Image)" width="330px" height="500px" />
+        </div>
+        <div class="col-sm">
+            <dl class="row">
+                <dt class="col-sm-12">
+                    <h3>@Html.DisplayFor(model => model.ProductName)</h3>
+                </dt>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Amount)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Amount)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.GroupProductDetail)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.GroupProductDetail.GroupProductDetailName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Provider)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Provider.ProviderName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-9">
+                    <span>@Html.DisplayFor(model => model.Description)</span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="d-flex mt-4">
+        <div class="mr-auto">
+            <a asp-controller="Home" asp-action="Index" class="no_underline"><i class="fa fa-arrow-left"></i> Về trang chủ</a>
+        </div>
+    </div>
+</div>
