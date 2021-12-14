@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +22,7 @@ namespace WebShop.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var webShopContext = _context.Product.Include(p => p.GroupProductDetail).Include(p => p.Provider);
+            var webShopContext = _context.Product.Include(p => p.Category).Include(p => p.Provider);
             return View(await webShopContext.ToListAsync());
         }
 
@@ -37,7 +35,7 @@ namespace WebShop.Controllers
             }
 
             var product = await _context.Product
-                .Include(p => p.GroupProductDetail)
+                .Include(p => p.Category)
                 .Include(p => p.Provider)
                 .FirstOrDefaultAsync(m => m.ProductID == id);
             if (product == null)
@@ -51,8 +49,8 @@ namespace WebShop.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["GroupProductDetailName"] = new SelectList(_context.GroupProductDetail, "GroupProductDetailID", "GroupProductDetailName");
-            ViewData["ProviderName"] = new SelectList(_context.Provider, "ProviderID", "ProviderName");
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryId");
+            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderName");
             return View();
         }
 
@@ -61,17 +59,16 @@ namespace WebShop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductID,ProductName,Amount,Price,Image,Description,ProviderID,GroupProductDetailID")] Product product, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ProductID,ProductName,Amount,Price,Image,Description,ProviderID,CategoryId")] Product product)
         {
             if (ModelState.IsValid)
             {
-                product.Image = Upload(file);
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GroupProductDetailID"] = new SelectList(_context.GroupProductDetail, "GroupProductDetailID", "GroupProductDetailID", product.GroupProductDetailID);
-            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderID", product.ProviderID);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderName", product.ProviderID);
             return View(product);
         }
 
@@ -88,8 +85,8 @@ namespace WebShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["GroupProductDetailID"] = new SelectList(_context.GroupProductDetail, "GroupProductDetailID", "GroupProductDetailID", product.GroupProductDetailID);
-            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderID", product.ProviderID);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderName", product.ProviderID);
             return View(product);
         }
 
@@ -98,7 +95,7 @@ namespace WebShop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductName,Amount,Price,Image,Description,ProviderID,GroupProductDetailID")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductID,ProductName,Amount,Price,Image,Description,ProviderID,CategoryId")] Product product)
         {
             if (id != product.ProductID)
             {
@@ -125,8 +122,8 @@ namespace WebShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GroupProductDetailID"] = new SelectList(_context.GroupProductDetail, "GroupProductDetailID", "GroupProductDetailID", product.GroupProductDetailID);
-            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderID", product.ProviderID);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "CategoryId", "CategoryId", product.CategoryId);
+            ViewData["ProviderID"] = new SelectList(_context.Provider, "ProviderID", "ProviderName", product.ProviderID);
             return View(product);
         }
 
@@ -139,7 +136,7 @@ namespace WebShop.Controllers
             }
 
             var product = await _context.Product
-                .Include(p => p.GroupProductDetail)
+                .Include(p => p.Category)
                 .Include(p => p.Provider)
                 .FirstOrDefaultAsync(m => m.ProductID == id);
             if (product == null)
@@ -164,21 +161,6 @@ namespace WebShop.Controllers
         private bool ProductExists(int id)
         {
             return _context.Product.Any(e => e.ProductID == id);
-        }
-        public string Upload(IFormFile file)
-        {
-            string uploadFileName = null;
-
-            if (file != null)
-            {
-                uploadFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                var path = $"wwwroot\\images\\{uploadFileName}";
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-            }
-            return uploadFileName;
         }
     }
 }

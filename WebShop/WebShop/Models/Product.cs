@@ -25,11 +25,12 @@ namespace WebShop.Models
         public string Description { get; set; }
         [Display(Name = "Nhập khẩu")]
         public int ProviderID { get; set; }
-        [Display(Name = "Nhóm sản phẩm chi tiết")]
-        public int GroupProductDetailID { get; set; }
-        public GroupProductDetail GroupProductDetail { get; set; }
+        [Display(Name = "Nhập khẩu")]
         public Provider Provider { get; set; }
-        public ICollection<Order> Orders { get; set; }
-        public ICollection<CartDetail> CartDetails { get; set; }
+        [Display(Name = "Loại sản phẩm")]
+        public int CategoryId { get; set; }
+        [Display(Name = "Loại sản phẩm")]
+        public Category Category { get; set; }
+        public ICollection<Bill> Bills { get; set; }
     }
 }

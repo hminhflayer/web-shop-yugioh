@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KKhgLeWSjqY1diZWVr+FtqdvBtHPKdWCo6ZWdGKy+xzU6t9Fcn8LR9tKLS2nnRsZoUaJ450sk8dzzjC13CjKyw==",
+  "dgSpecHash": "BB1RoSZGcr1mqwLG7DqpNTtwsIpylfUVOsxArqF/qVpaBHE8Oqk0UKQVieH3lm09EzR3fqtbZEtK73Grr/Pucg==",
   "success": true,
-  "projectFilePath": "D:\\HocKi-I\\ASP.NET\\WebShop\\WebShop\\WebShop.csproj",
+  "projectFilePath": "D:\\project-git\\web-shop-yugioh\\WebShop\\WebShop\\WebShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hoang\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.21\\microsoft.aspnetcore.cryptography.internal.3.1.21.nupkg.sha512",
     "C:\\Users\\hoang\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.21\\microsoft.aspnetcore.cryptography.keyderivation.3.1.21.nupkg.sha512",
