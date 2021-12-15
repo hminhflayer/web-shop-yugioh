@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,7 @@ namespace WebShop.Controllers
             return View(billDetail);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: BillDetails/Create
         public IActionResult Create()
         {
@@ -54,6 +56,7 @@ namespace WebShop.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: BillDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -72,6 +75,7 @@ namespace WebShop.Controllers
             return View(billDetail);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: BillDetails/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -90,6 +94,7 @@ namespace WebShop.Controllers
             return View(billDetail);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: BillDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -127,6 +132,7 @@ namespace WebShop.Controllers
             return View(billDetail);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: BillDetails/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -147,6 +153,7 @@ namespace WebShop.Controllers
             return View(billDetail);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: BillDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -1,0 +1,83 @@
+﻿@model List<WebShop.Models.Cart>
+<br />
+<h3>Giỏ hàng của bạn</h3>
+@if (Model.Count > 0)
+{
+    int num = 0;
+    int total = 0;
+    int amount = 0;
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Sản phẩm
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                amount = item.Product.Price * item.Quantity;
+                total += amount;
+                num++;
+                <tr>
+                    <td>
+                        @num
+                    </td>
+                    <td>
+                        <img src="~/images/@item.Product.Image" width="50" class="img-thumbnail" />
+                        @item.Product.ProductName
+                    </td>
+                    <td>
+                        @item.Product.Price.ToString("n0") VNĐ
+                    </td>
+                    <td>
+                        <form asp-action="UpdateItem" method="post">
+                            <div class="row">
+                                <div class="col">
+                                    <input name="id" type="hidden" asp-for="@item.Product.ProductID"/>
+                                    <input name="quantity" type="number" class="form-control" asp-for="@item.Quantity"/>
+                                </div>
+                                <div class="col">
+                                    <input type="submit" class="btn btn-warning" value="Cập nhật"/>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        @amount.ToString("n0") VNĐ
+                    </td>
+                    <td><a class="btn btn-danger" asp-action="RemoveItem" asp-route-id="@item.Product.ProductID">Xóa</a></td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4">Tổng tiền</td>
+                <td colspan="2"><strong>@total.ToString("n0") VNĐ</strong></td>
+            </tr>
+            <tr>
+                <td colspan="4"><a asp-action="Index">Xem các sản phẩm khác</a></td>
+                <td colspan="2">
+                    <a class="btn btn-success" asp-controller="Home" asp-action="Bill">Đặt hàng</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-danger text-center">Giỏ hàng trống!</p>
+}

@@ -234,7 +234,13 @@ namespace WebShop.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusBill")
                         .HasColumnType("int");
 
                     b.Property<int>("TotalMoney")

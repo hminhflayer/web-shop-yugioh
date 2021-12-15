@@ -223,6 +223,8 @@ namespace WebShop.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     TotalMoney = table.Column<int>(nullable: false),
                     Address = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    StatusBill = table.Column<int>(nullable: false),
                     ProductID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

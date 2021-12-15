@@ -936,11 +936,6 @@ D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Are
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Create.cshtml.g.cs
-D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Delete.cshtml.g.cs
-D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Details.cshtml.g.cs
-D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Edit.cshtml.g.cs
-D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Index.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\BillDetails\Create.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\BillDetails\Delete.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\BillDetails\Details.cshtml.g.cs
@@ -961,7 +956,6 @@ D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Vie
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Products\Details.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Products\Edit.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
-D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\WebShop.csproj.AssemblyReference.cache
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\Email.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
@@ -969,3 +963,11 @@ D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Are
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\Cart.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Home\DetailProduct.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\WebShop.csproj.AssemblyReference.cache
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Create.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Delete.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Details.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Edit.cshtml.g.cs
+D:\project-git\web-shop-yugioh\WebShop\WebShop\obj\Debug\netcoreapp3.1\Razor\Views\Bills\Index.cshtml.g.cs

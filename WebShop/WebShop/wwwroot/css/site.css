@@ -89,3 +89,19 @@ main {
     text-decoration: none;
 }
 
+.body_main {
+    /* The image used */
+    background-color: lig;
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    // remove the gap so it doesn't close
+}

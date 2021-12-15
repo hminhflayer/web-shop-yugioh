@@ -76,7 +76,7 @@ namespace WebShop.Data
 					context.SaveChanges();
 				}
 
-                if (!context.Roles.Any())
+                if (!context.Users.Any())
                 {
 					var admin = new User
 					{
@@ -85,10 +85,10 @@ namespace WebShop.Data
 						PhoneNumber = "0378108516",
 						Address = "Châu Thành, An Giang",
 						UserName = "Admin",
-						PasswordHash = "AQAAAAEAACcQAAAAEJSxKHjnmjDcdNro3nPAT07LP9lsSQrb21qReb1lUrXZh14E3k+kopjT0PPKo7lHaw=="
+						PasswordHash = "AQAAAAEAACcQAAAAEApmOhe8Sx14W/in1MFvVTKBlys0fFZQ7Q7aqtetzATCzFsTXjRSS3MZGLVG4RlDNQ=="
 					};
-
-					context.User.Add(admin);
+					//admin2703
+					context.Users.Add(admin);
 					context.SaveChanges();
 
 					IdentityUserRole<string> adminRole = new IdentityUserRole<string>

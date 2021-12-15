@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebShop.Data;
 using Microsoft.AspNetCore.Identity;
+using WebShop.Models;
 
 namespace WebShop
 {
@@ -38,7 +39,7 @@ namespace WebShop
             services.AddDbContext<WebShopContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WebShopContext")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<WebShopContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI();

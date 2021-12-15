@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebShop.Models
 {
+    public enum Status
+    {
+        A,B,C,D
+    }
     public class Bill
     {
         public int BillId { get; set; }
@@ -17,6 +21,12 @@ namespace WebShop.Models
         public int TotalMoney { get; set; }
         [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
+
+        [Display(Name = "Tên người nhận")]
+        public string FullName { get; set; }
+
+        [Display(Name = "Trạng thái")]
+        public Status StatusBill { get; set; }
         [Display(Name = "Người dùng")]
         public User User { get; set; }
         public ICollection<BillDetail> BillDetails { get; set; }
