@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using WebShop.Libs; 
+@{      ViewData["Title"] = "Thống kê";
+    string[] name = SupportClass.NameTop10.ToArray();
+    int[] value = SupportClass.ValueTop10.ToArray();
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<div class="row bg-white">
+    <h4 class="text-center">Thống kê 10 sản phẩm bán chạy nhất</h4>
+    <div class="col-sm">
+        <canvas id="myChart" style="width:100%; height: 300px"></canvas>       
+    </div>
+</div>
+
+<script>
+        new Chart("myChart", {
+        type: "line",
+        data: {
+            labels: ["@name[0]","@name[1]","@name[2]","@name[3]","@name[4]","@name[5]","[@name[6]","@name[7]","@name[8]","@name[9]"],
+                datasets: [{
+                fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: [@value[0],@value[1],@value[2],@value[3],@value[4],@value[5],@value[6],@value[7],@value[8],@value[9]]
+                }]
+        },
+        options: {
+        legend: { display: false },
+            scales: {
+                yAxes: [{ ticks: { min: 0, stepSize: 1} }],
+            }
+        }
+    });
+</script>

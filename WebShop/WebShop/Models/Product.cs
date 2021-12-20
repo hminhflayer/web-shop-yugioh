@@ -13,7 +13,7 @@ namespace WebShop.Models
         [Display(Name = "Tên Sản Phẩm")]
         public string ProductName { get; set; }
         [Required(ErrorMessage = "Số lượng bị trống!")]
-        [Display(Name = "Số lượng trong kho")]
+        [Display(Name = "Số lượng")]
         public int Amount { get; set; }
         [DisplayFormat(DataFormatString = "{0:#,##0} VNĐ")]
         [Required(ErrorMessage = "Giá bị trống!")]

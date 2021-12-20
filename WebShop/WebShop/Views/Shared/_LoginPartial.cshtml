@@ -6,14 +6,13 @@
 @{
 
 }
-
 <ul class="navbar-nav ml-auto">
     @if (SignInManager.IsSignedIn(User))
     {
         @if (User.IsInRole("Admin"))
         {
             <div class="dropdown nav-item">
-                <a class="dropdown-toggle nav-link text-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" asp-area="" asp-controller="Home" asp-action="Cart">
+                <a class="dropdown-toggle nav-link text-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-tasks"></i> Quản lý
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -25,9 +24,11 @@
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" asp-controller="Bills" asp-action="Index">Quản lý Đơn hàng</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" asp-controller="Bills" asp-action="Index">Quản lý Tài khoản</a></li>
+                    <li><a class="dropdown-item" asp-controller="BillDetails" asp-action="Index">Quản lý Đơn hàng chi tiết</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" asp-controller="Bills" asp-action="Index">Thống kê</a></li>
+                    <li><a class="dropdown-item" asp-controller="UserManage" asp-action="Index">Quản lý Tài khoản</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" asp-controller="BillDetails" asp-action="Chart">Thống kê</a></li>
                 </ul>
             </div>
         }

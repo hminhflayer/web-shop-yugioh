@@ -237,6 +237,9 @@ namespace WebShop.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("ProductID")
                         .HasColumnType("int");
 

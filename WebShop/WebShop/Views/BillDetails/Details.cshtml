@@ -4,45 +4,58 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
+<h1>Chi tiết sản phẩm</h1>
 <div>
-    <h4>BillDetail</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Money)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Money)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalMoney)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalMoney)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Bill)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Bill.BillId)
-        </dd>
-    </dl>
+    <hr class="mb-3" />
+    <div class="row pb-lg-0">
+        <div class="col-sm">
+            <dl class="row">
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Product)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Product.ProductName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Money)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Money)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.TotalMoney)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.TotalMoney)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Bill)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Bill.BillId)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-sm">
+            <div class="text-center font-weight-bold">@Html.DisplayNameFor(model => model.Product.Image)</div>
+            <div class="text-center">
+                <img src="~/images/@Html.DisplayFor(model => model.Product.Image)" width="40%" />
+            </div>
+        </div>
+    </div>
+    <hr class="mb-3" />
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.BillDetailId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="row">
+        <div class="col-sm">
+            <a asp-action="Index" class="no_underline"><i class="fas fa-arrow-left"></i> Về trang quản lý</a>
+        </div>
+    </div>
 </div>

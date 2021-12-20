@@ -1,4 +1,7 @@
 ﻿@model List<WebShop.Models.Cart>
+@{ 
+    ViewData["Title"] = "Giỏ hàng";
+}
 <br />
 <h3>Giỏ hàng của bạn</h3>
 @if (Model.Count > 0)
@@ -49,11 +52,11 @@
                         <form asp-action="UpdateItem" method="post">
                             <div class="row">
                                 <div class="col">
-                                    <input name="id" type="hidden" asp-for="@item.Product.ProductID"/>
-                                    <input name="quantity" type="number" class="form-control" asp-for="@item.Quantity"/>
+                                    <input name="id" type="hidden" asp-for="@item.Product.ProductID" />
+                                    <input name="quantity" type="number" class="form-control" asp-for="@item.Quantity" />
                                 </div>
                                 <div class="col">
-                                    <input type="submit" class="btn btn-warning" value="Cập nhật"/>
+                                    <input type="submit" class="btn btn-warning" value="Cập nhật" />
                                 </div>
                             </div>
                         </form>
@@ -71,7 +74,7 @@
             <tr>
                 <td colspan="4"><a asp-action="Index">Xem các sản phẩm khác</a></td>
                 <td colspan="2">
-                    <a class="btn btn-success" asp-controller="Home" asp-action="Bill">Đặt hàng</a>
+                    <a class="btn btn-success" asp-controller="Home" asp-action="Order" asp-route-money="@total">Đặt hàng</a>
                 </td>
             </tr>
         </tbody>

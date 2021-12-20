@@ -1,0 +1,85 @@
+﻿@page
+@using WebShop.Libs;
+@using WebShop.Models; 
+@model WebShop.Areas.Identity.Pages.Account.Manage.OrderModel
+@{
+    var list = SupportClass.Bill;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Tên người nhận
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th width="20%">
+                Trạng thái đơn hàng
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th width="10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in list)
+        {
+        <tr>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.FullName
+            </td>
+            <td>
+                @item.PhoneNumber
+            </td>
+            <td class="text-center">
+                @switch (item.StatusBill)
+                {
+                    case Status.CONFIRM:
+                        {
+                            <a style="width:90%" class="btn btn-secondary font-weight-bold text-light">Chờ xác nhận </a>
+                            break;
+                        }
+                    case Status.SEND:
+                        {
+                            <a style="width:90%" class="btn btn-info font-weight-bold text-light">Đã gửi</a>
+                            break;
+                        }
+                    case Status.TRANSPORT:
+                        {
+                            <a style="width:90%" class="btn btn-warning font-weight-bold text-light">Đang vận chuyển</a>
+                            break;
+                        }
+                    case Status.CANCEL:
+                        {
+                            <a style="width:90%" class="btn btn-danger font-weight-bold text-light">Đã hủy</a>
+                            break;
+                        }
+                    default:
+                        {
+                            <a class="btn btn-success font-weight-bold text-light">Đã nhận</a>
+                            break;
+                        }
+                }
+            </td>
+            <td>
+                @item.TotalMoney.ToString("n0") VNĐ
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Bills" asp-action="Details" asp-route-id="@item.BillId">Chi tiết</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

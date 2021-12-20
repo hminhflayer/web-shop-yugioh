@@ -67,7 +67,7 @@ body {
 
 .container {
     position: relative;
-    min-height: 100%;
+    min-height: 90%;
 }
 
 main {
@@ -91,7 +91,7 @@ main {
 
 .body_main {
     /* The image used */
-    background-color: lig;
+    background-color: lightblue;
     /* Full height */
     height: 100%;
     /* Center and scale the image nicely */

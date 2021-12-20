@@ -4,14 +4,24 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-xl-center">Quản lí hóa đơn chi tiết</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="row mb-3">
+    <div class="col-sm text-end">
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <input type="text" name="SearchString" placeholder="Tìm kiếm" asp-route-searchString="" />
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Money)
             </th>
@@ -20,9 +30,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TotalMoney)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bill)
@@ -34,24 +41,23 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Money)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalMoney)
-            </td>
-            <td>
+                <img src="~/images/@item.Product.Image" width="10%" />
                 @Html.DisplayFor(modelItem => item.Product.ProductName)
             </td>
-            <td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.Money)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.TotalMoney)
+            </td>
+            <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.Bill.BillId)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BillDetailId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BillDetailId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BillDetailId">Delete</a>
+            <td class="align-middle">
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.BillDetailId">Chi tiết</a>
             </td>
         </tr>
 }

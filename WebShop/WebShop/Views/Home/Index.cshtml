@@ -3,10 +3,17 @@
 @{
     ViewData["Title"] = "Danh sách";
 
+    var pagingmodel = new WebShop.Models.PagingModel()
+    {
+        currentPage = ViewBag.CurrentPage,
+        countpages = ViewBag.CountPage,
+        gererateUrl = (int? p) => Url.Action("Index", new { page = p })
+    };
 }
 
+
 <div class="row text-center">
-    <div class="col-sm text-start">
+    <div class="col-sm-2 text-start">
         <div class="dropdown">
             <button class="btn btn-info dropdown-toggle" id="dropdownMenuButtonSearch" data-bs-toggle="dropdown" aria-expanded="false">
                 Sắp xếp
@@ -19,19 +26,23 @@
             </ul>
         </div>
     </div>
-    <div class="col-sm">
+    <div class="col-sm text-end">
         <h2>@ViewBag.Home</h2>
     </div>
     <div class="col-sm text-end">
         <form asp-action="Index" method="get">
             <div class="form-actions no-color">
                 <input type="text" name="SearchString" placeholder="Tìm kiếm" asp-route-searchString="" />
-                <input type="submit" value="Search" class="btn btn-primary" />
+                <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-<hr class="mt-2"/>
+@if (Model != null)
+{
+    <partial name="_Paging" model="@pagingmodel" />
+}
+<hr class="mt-2" />
 <div class="row text-center">
     @if (Model == null)
     {
@@ -51,14 +62,30 @@
                     </div>
                     <div class="card-header bg-info" style="max-width:100% ; height: 70px">
                         <a asp-action="DetailProduct" asp-route-id="@item.ProductID" class="text-white no_underline">
-                            <strong>
-                                @Html.DisplayFor(modelItem => item.ProductName)
-                            </strong>
+                            @if (item.ProductName.Length > 45)
+                            {
+                                <strong>@item.ProductName.Substring(0, 45)... </strong>
+                            }
+                            else
+                            {
+                                <strong>@Html.DisplayFor(modelItem => item.ProductName)</strong>
+                            }
                         </a>
                     </div>
-                    <div class="card-footer bg-light">
-                        <a class="btn btn-success" asp-action="DetailProduct" asp-route-id="@item.ProductID">Chi tiết</a>
-                        <a class="btn btn-warning" asp-action="AddToCart" asp-route-id="@item.ProductID">Cho vào giỏ</a>
+                    <div class="card-footer bg-light row m-0 p-0">
+                        <div class="col-sm btn btn-success">
+                            <a class="btn btn-success" asp-action="DetailProduct" asp-route-id="@item.ProductID">Chi tiết</a>
+                        </div>
+                        <div class="col-sm btn btn-warning">
+                            @if (item.Amount > 0)
+                            {
+                                <a class="btn btn-warning" asp-action="AddToCart" asp-route-id="@item.ProductID">Cho vào giỏ</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-dark">Cho vào giỏ</a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

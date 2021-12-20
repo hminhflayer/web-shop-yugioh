@@ -40,6 +40,10 @@ namespace WebShop.Areas.Identity.Pages.Account.Manage
             [Required(ErrorMessage = "Họ và tên bị trống!")]
             [Display(Name = "Họ và tên")]
             public string FullName { get; set; }
+
+            [Required(ErrorMessage = "Đại chỉ bị trống!")]
+            [Display(Name = "Địa chỉ")]
+            public string Address { get; set; }
         }
 
         private async Task LoadAsync(User user)
@@ -52,7 +56,8 @@ namespace WebShop.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                FullName = user.FullName
+                FullName = user.FullName,
+                Address = user.Address
             };
         }
 
@@ -98,6 +103,11 @@ namespace WebShop.Areas.Identity.Pages.Account.Manage
             if (Input.FullName != user.FullName)
             {
                 user.FullName = Input.FullName;
+            }
+
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
             }
 
             await _userManager.UpdateAsync(user);

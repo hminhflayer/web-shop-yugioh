@@ -19,6 +19,12 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProviderID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="row">
+        <div class="col-sm">
+            <a asp-action="Index" class="no_underline"><i class="fas fa-arrow-left"></i> Về trang quản lý</a>
+        </div>
+        <div class="col-sm text-end">
+            <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.ProviderID">Chỉnh sửa</a>
+        </div>
+    </div>
 </div>

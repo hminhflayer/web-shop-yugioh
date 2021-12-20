@@ -10,7 +10,7 @@ using WebShop.Data;
 namespace WebShop.Migrations
 {
     [DbContext(typeof(WebShopContext))]
-    [Migration("20211215141406_initDB")]
+    [Migration("20211216022601_initDB")]
     partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,6 +237,9 @@ namespace WebShop.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProductID")

@@ -17,5 +17,13 @@ namespace WebShop.Libs
 
         public static List<Category> Category { get; set; }
 
+        public static List<Bill> Bill { get; set; }
+
+        public static List<string> NameTop10 { get; set; }
+        public static List<int> ValueTop10 { get; set; }
+
+        public static string ID { get; set; }
+        public static string FullName { get; set; }
+
     }
 }

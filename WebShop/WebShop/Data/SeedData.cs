@@ -11,6 +11,7 @@ namespace WebShop.Data
 {
     public class SeedData
     {
+		private static readonly UserManager<User> userManager;
 		public static void Initialize(IServiceProvider serviceProvider)
 		{
 			using (var context = new WebShopContext(serviceProvider.GetRequiredService<DbContextOptions<WebShopContext>>()))
@@ -80,25 +81,26 @@ namespace WebShop.Data
                 {
 					var admin = new User
 					{
-						Email = "hoangminhflayer@gmail.com",
+						Email = "test1@gmail.com",
 						FullName = "Cao Hoàng Minh",
 						PhoneNumber = "0378108516",
 						Address = "Châu Thành, An Giang",
 						UserName = "Admin",
-						PasswordHash = "AQAAAAEAACcQAAAAEApmOhe8Sx14W/in1MFvVTKBlys0fFZQ7Q7aqtetzATCzFsTXjRSS3MZGLVG4RlDNQ=="
+						EmailConfirmed = false,
 					};
-					//admin2703
-					context.Users.Add(admin);
-					context.SaveChanges();
+					IdentityResult result = userManager.CreateAsync(admin, "admin2703").Result;
 
-					IdentityUserRole<string> adminRole = new IdentityUserRole<string>
+					if (result.Succeeded)
 					{
-						UserId = admin.Id,
-						RoleId = "AdminRole"
-					};
+						IdentityUserRole<string> adminRole = new IdentityUserRole<string>
+						{
+							UserId = admin.Id,
+							RoleId = "AdminRole"
+						};
 
-					context.UserRoles.Add(adminRole);
-					context.SaveChanges();
+						context.UserRoles.Add(adminRole);
+						context.SaveChanges();
+					}
 				}
             }
 		}

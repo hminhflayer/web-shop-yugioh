@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,28 @@ namespace WebShop.Controllers
             _context = context;
         }
 
-        // GET: Bills
-        public async Task<IActionResult> Index()
+        public IQueryable<Bill> Search(string searchString)
         {
-            var webShopContext = _context.Bill.Include(b => b.User);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var bills = _context.Bill.Where(s => s.FullName.Contains(searchString)
+                                       || s.PhoneNumber.Contains(searchString));
+
+                return bills;
+            }
+
+            return _context.Bill;
+        }
+
+        [Authorize(Roles = "Admin")]
+        // GET: Bills
+        public async Task<IActionResult> Index(string? searchString)
+        {
+            var bills = Search(searchString);
+            var webShopContext = bills.Include(b => b.User);
             return View(await webShopContext.ToListAsync());
         }
+
 
         // GET: Bills/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -36,7 +53,12 @@ namespace WebShop.Controllers
 
             var bill = await _context.Bill
                 .Include(b => b.User)
+                .Include(b => b.BillDetails)
                 .FirstOrDefaultAsync(m => m.BillId == id);
+            ViewBag.BillDetails = _context.BillDetail
+                .Where(p => p.BillId == bill.BillId)
+                .Include(b => b.Product)
+                .ToList();
             if (bill == null)
             {
                 return NotFound();
@@ -46,30 +68,31 @@ namespace WebShop.Controllers
         }
 
         // GET: Bills/Create
-        public IActionResult Create()
-        {
-            ViewData["UserID"] = new SelectList(_context.User, "Id", "Id");
-            return View();
-        }
+        //public IActionResult Create()
+        //{
+        //    ViewData["UserID"] = new SelectList(_context.User, "Id", "Id");
+        //    return View();
+        //}
 
         // POST: Bills/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BillId,UserID,Date,TotalMoney,Address,FullName,StatusBill")] Bill bill)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(bill);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserID"] = new SelectList(_context.User, "Id", "Id", bill.UserID);
-            return View(bill);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("BillId,UserID,Date,TotalMoney,Address,FullName,PhoneNumber,StatusBill")] Bill bill)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(bill);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["UserID"] = new SelectList(_context.User, "Id", "Id", bill.UserID);
+        //    return View(bill);
+        //}
 
-        // GET: Bills/Edit/5
+        //GET: Bills/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,12 +109,14 @@ namespace WebShop.Controllers
             return View(bill);
         }
 
+
         // POST: Bills/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BillId,UserID,Date,TotalMoney,Address,FullName,StatusBill")] Bill bill)
+        public async Task<IActionResult> Edit(int id, [Bind("BillId,UserID,Date,TotalMoney,Address,FullName,PhoneNumber,StatusBill")] Bill bill)
         {
             if (id != bill.BillId)
             {
@@ -122,7 +147,8 @@ namespace WebShop.Controllers
             return View(bill);
         }
 
-        // GET: Bills/Delete/5
+        [Authorize(Roles = "Admin")]
+        //GET: Bills/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,6 +167,7 @@ namespace WebShop.Controllers
             return View(bill);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: Bills/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

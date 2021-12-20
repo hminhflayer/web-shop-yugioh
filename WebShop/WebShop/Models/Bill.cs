@@ -8,7 +8,11 @@ namespace WebShop.Models
 {
     public enum Status
     {
-        A,B,C,D
+        CONFIRM,
+        SEND, 
+        TRANSPORT,
+        RECEIVED,
+        CANCEL
     }
     public class Bill
     {
@@ -25,9 +29,12 @@ namespace WebShop.Models
         [Display(Name = "Tên người nhận")]
         public string FullName { get; set; }
 
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "Trạng thái")]
         public Status StatusBill { get; set; }
-        [Display(Name = "Người dùng")]
+        [Display(Name = "Tài khoản")]
         public User User { get; set; }
         public ICollection<BillDetail> BillDetails { get; set; }
     }

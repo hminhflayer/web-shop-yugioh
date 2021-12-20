@@ -1,0 +1,108 @@
+﻿@model WebShop.Models.Bill
+
+@{
+    ViewData["Title"] = "Create";
+    var cart = ViewBag.Cart;
+    User user = ViewBag.User;
+}
+
+<h1 class="text-center">Xác nhận thông tin đặt hàng</h1>
+
+<h4>Thông tin đơn hàng</h4>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="ConfirmOrder">
+            <div class="row">
+                <div class="col-sm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label"></label>
+                        <input asp-for="FullName" value="@user.FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" value="@user.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <textarea asp-for="Address" rows="4" class="form-control">@user.Address</textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Xác nhận đặt hàng" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-sm">
+        @if (cart.Count > 0)
+        {
+            int num = 0;
+            int total = 0;
+            int amount = 0;
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            STT
+                        </th>
+                        <th>
+                            Sản phẩm
+                        </th>
+                        <th>
+                            Giá
+                        </th>
+                        <th>
+                            Thành tiền
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in cart)
+                    {
+                        amount = item.Product.Price * item.Quantity;
+                        total += amount;
+                        num++;
+                        <tr>
+                            <td>
+                                @num
+                            </td>
+                            <td>
+                                <img src="~/images/@item.Product.Image" width="50" class="img-thumbnail" />
+                                @item.Product.ProductName x @item.Quantity
+                            </td>
+                            <td class="align-middle">
+                                @item.Product.Price.ToString("n0") VNĐ
+                            </td>
+                            <td class="align-middle">
+                                @amount.ToString("n0") VNĐ
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="col-sm">
+                <div class="text-end">
+                    Tổng tiền:
+                    <h5 class="font-weight-bold">@ViewBag.Money.ToString("n0") VNĐ</h5>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <a class="no_underline" asp-action="Index"><i class="fas fa-arrow-left"></i> Về trang chủ</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
